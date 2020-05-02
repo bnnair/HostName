@@ -1,0 +1,50 @@
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    - uses: azure/docker-login@v1
+      with:
+        login-server: bnnair.azurecr.io
+        username: ${{ secrets.acr_bnnair_username }}
+        password: ${{ secrets.acr_bnnair_password }}
+    
+    - name: Build and push image to ACR
+      id: build-image
+      run: |
+        docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t bnnair.azurecr.io/k8sdevopscluster:${{ github.sha }}
+        docker push bnnair.azurecr.io/k8sdevopscluster:${{ github.sha }}
+    
+    - uses: azure/k8s-set-context@v1
+      with:
+         kubeconfig: ${{ secrets.aks_k8sdevopscluster_kubeConfig }}
+      id: login
+    
+    - name: Create namespace
+      run: |
+        namespacePresent=`kubectl get namespace | grep k8sdevopsclusterbbf0 | wc -l`
+        if [ $namespacePresent -eq 0 ]
+        then
+            echo `kubectl create namespace k8sdevopsclusterbbf0`
+        fi
+
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: k8sdevopsclusterbbf0
+        container-registry-url: bnnair.azurecr.io
+        container-registry-username: ${{ secrets.acr_bnnair_username }}
+        container-registry-password: ${{ secrets.acr_bnnair_password }}
+        secret-name: k8sdevopscludockerauth
+       
+    - uses: azure/k8s-deploy@v1
+      with:
+        namespace: k8sdevopsclusterbbf0
+        manifests: |
+          manifests/deployment.yml
+          manifests/service.yml
+        images: |
+          bnnair.azurecr.io/k8sdevopscluster:${{ github.sha }}
+        imagepullsecrets: |
+          k8sdevopscludockerauth
