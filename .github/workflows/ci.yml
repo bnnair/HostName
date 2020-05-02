@@ -42,9 +42,9 @@ jobs:
         password: ${{ secrets.REGISTRY_PASSWORD }}
     
     - run: |
-        docker build . -t ${{ env.REGISTRY_NAME }}.azurecr.io/hostname:${{ github.sha }}
-        docker push ${{ env.REGISTRY_NAME }}.azurecr.io/hostname:${{ github.sha }}
-        #docker run -d -p 8080:8080 ${{ env.REGISTRY_NAME }}.azurecr.io/hostname:${{ github.sha }}	
+        docker build . -t ${{ env.REGISTRY_NAME }}.azurecr.io/k8sdevopscluster:${{ github.sha }}
+        docker push ${{ env.REGISTRY_NAME }}.azurecr.io/k8sdevopscluster:${{ github.sha }}
+        #docker run -d -p 8080:8080 ${{ env.REGISTRY_NAME }}.azurecr.io/k8sdevopscluster:${{ github.sha }}	
     
     # Set the target Azure Kubernetes Service (AKS) cluster. 
     - uses: azure/aks-set-context@v1
@@ -73,7 +73,7 @@ jobs:
           manifests/deployment.yml
           manifests/service.yml
         images: |
-          ${{ env.REGISTRY_NAME }}.azurecr.io/hostname:${{ github.sha }}
+          ${{ env.REGISTRY_NAME }}.azurecr.io/k8sdevopscluster:${{ github.sha }}
         imagepullsecrets: |
           ${{ env.REGISTRY_NAME }}-registry-connection
         namespace: ${{ env.NAMESPACE }}
