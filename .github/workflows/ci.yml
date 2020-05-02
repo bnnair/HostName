@@ -14,10 +14,10 @@ on:
 
 # Environment variables available to all jobs and steps in this workflow
 env:
-  REGISTRY_NAME: BNNAIR
+  REGISTRY_NAME: bnnair
   CLUSTER_NAME: k8s_devops_cluster
   CLUSTER_RESOURCE_GROUP: DEVOPSGROUPS
-  NAMESPACE: default
+  NAMESPACE: hostnamespace
 
 
 
@@ -42,9 +42,9 @@ jobs:
         password: ${{ secrets.REGISTRY_PASSWORD }}
     
     - run: |
-        docker build . -t bnnair.azurecr.io/hostname:${{ github.sha }}
-        docker push bnnair.azurecr.io/hostname:${{ github.sha }}
-        #docker run -d -p 8080:8080 bnnair.azurecr.io/hostname:${{ github.sha }}	
+        docker build . -t ${{ env.REGISTRY_NAME }}.azurecr.io/hostname:${{ github.sha }}
+        docker push ${{ env.REGISTRY_NAME }}.azurecr.io/hostname:${{ github.sha }}
+        #docker run -d -p 8080:8080 ${{ env.REGISTRY_NAME }}.azurecr.io/hostname:${{ github.sha }}	
     
     # Set the target Azure Kubernetes Service (AKS) cluster. 
     - uses: azure/aks-set-context@v1
@@ -73,7 +73,7 @@ jobs:
           manifests/deployment.yml
           manifests/service.yml
         images: |
-          ${{ env.REGISTRY_NAME }}.azurecr.io/myimage:${{ github.sha }}
+          ${{ env.REGISTRY_NAME }}.azurecr.io/hostname:${{ github.sha }}
         imagepullsecrets: |
           ${{ env.REGISTRY_NAME }}-registry-connection
         namespace: ${{ env.NAMESPACE }}
