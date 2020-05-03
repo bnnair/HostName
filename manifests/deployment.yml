@@ -1,16 +1,16 @@
 apiVersion : apps/v1beta1
 kind: Deployment
 metadata:
-  name: "k8sdevopscluster"
+  name: "k8sdevops"
 spec:
-  replicas: 2
+  replicas: 0
   template:
     metadata:
       labels:
-        app: "k8sdevopscluster"
+        app: "k8sdevops"
     spec:
       containers:
-        - name: "k8sdevopscluster"
-          image: "bnnair.azurecr.io/k8sdevopscluster"
+        - name: "k8sdevops"
+          image: "bnnair.azurecr.io/k8sdevops"
           ports:
           - containerPort: 8080
