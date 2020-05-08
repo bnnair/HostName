@@ -9,11 +9,12 @@ Hostname identifier
     b. copy the password
 
 4. Open cloud shell
-    a. run the following command 
+    a. run the following command
+    > '''
         az ad sp create-for-rbac --name "hostuser" --role contributor \
                             --scopes /subscriptions/0c0e8e92-b224-42d0-8eac-9c176e6aa49d/resourceGroups/k8sdevops_rg \
                             --sdk-auth
-
+      '''
     b. it creates a json file like this..
     '''
             {
