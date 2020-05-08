@@ -5,10 +5,14 @@ Hostname identifier
 1. Create a registry group name : k8sdevops_rg
 2. create a container registry named : bnnair
 3. go to resource bnnair
+    
     a. enable admin user
+    
     b. copy the password
 
-4. Open cloud shell
+4. Create A Kubernetes Service cluster named : k8sdevopscluster
+
+5. Open cloud shell
     > a. run the following command
     
         az ad sp create-for-rbac --name "hostuser" --role contributor \
@@ -37,9 +41,8 @@ Hostname identifier
         ii. name: REGISTRY_USERNAME, value = bnnair
         iii. name: REGISTRY_PASSWORD, value " <password copied above>
 
-    > d. Create A Kubernetes Service cluster named : k8sdevopscluster
     
     > e. run the ci.yml
     
-    > f. get the external ip and port is 8080, open a browser and type: http://<externalIP>:8080
-       This will give you the hostname of the system 
+    > f. get the external ip and port is 8080, open a browser and type: http://<externalIP>:8080.
+           This will give you the hostname of the system 
