@@ -14,7 +14,6 @@ env:
   CLUSTER_NAME: k8sdevopscluster
   CLUSTER_RESOURCE_GROUP: k8sdevops_rg
 
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build-and-deploy:
@@ -40,21 +39,17 @@ jobs:
         docker push ${{ env.REGISTRY_NAME }}.azurecr.io/k8sdevops:${{ github.sha }}
         #docker run -d -p 8080:8080 ${{ env.REGISTRY_NAME }}.azurecr.io/k8sdevops:${{ github.sha }}	
     
-    # Set the target Azure Kubernetes Service (AKS) cluster. 
-    - uses: azure/aks-set-context@v1
+    - uses: azure/k8s-set-context@v1
       with:
-        creds: '${{ secrets.AZURE_CREDENTIALS }}'
-        cluster-name: ${{ env.CLUSTER_NAME }}
-        resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
-        
-    # Create imagepullsecret for Azure Container registry (ACR)
+         kubeconfig: ${{ secrets.aks_k8sdevops_kubeConfig }}
+      id: login
+
     - uses: azure/k8s-create-secret@v1
       with:
         container-registry-url: ${{ env.REGISTRY_NAME }}.azurecr.io
         container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
         container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
         secret-name: ${{ env.REGISTRY_NAME }}-registry-connection
-      
     
     # Deploy app to AKS
     - uses: azure/k8s-deploy@v1
@@ -66,4 +61,3 @@ jobs:
           ${{ env.REGISTRY_NAME }}.azurecr.io/k8sdevops:${{ github.sha }}
         imagepullsecrets: |
           ${{ env.REGISTRY_NAME }}-registry-connection
-        
