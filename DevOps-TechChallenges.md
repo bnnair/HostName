@@ -2,7 +2,7 @@
 
 > Please create a Git Repository for this challenge and commit all answers to it. Please keep this organised and commit with clear messages. Once complete, notify us and we will provide you with an email to add to the repository so we can review.
 > ## Basics
->  General
+General
 > 1. What is the role of AWS/Azure/GCP in DevOps?
 
     The focus of DevOps is to leverage multi-faceted teams of developers and operations professionals that work together to
@@ -18,6 +18,7 @@
     in other words, both DevOps and cloud complement each other in providing features like Continuous Integration, Continuous Delivery, automating application deployment, Continuous QA and most important of all Infrastructure as code to enable better application lifecycle development and deployment processes and quicker updates.
 
 > 2. How will you approach a project that needs to implement DevOps?
+
 	Assuming that the project team is following agile whether scrum or any other methodology is fine, I would take the following approach..
 	a. First comes the team, build feature teams, groups of cross functional and cross component employees who will work for delivering features to end-to-end customers.
 	b. Update role structures and hierarchy within the department/organisation, to minimize the amount of dependency and planning delays. The feature teams would reduce the inefficiencies, inter dependency between different teams, thus reduce delays.
@@ -28,6 +29,7 @@
 	g. create a CI pipeline with code repository, static unit testing and code coverage tools like Sonarqube, testing automation tools like selenium etc. This would do a "shift left" of the bugs/defect that would be found later in the lifecycle and create an image and store it in some repository. With the implementation of continuous testing and the alignment of testing and production environments, the QA team spends much less time on QA and testing activities and misses fewer bugs.
 	h. Then create a Continuous deployment pipeline which would take the build image and deploy it to the server. This can be a standalone development server, or QA server. This can also be deployed to cluster of servers such as in production .
 	i. Container systems like Docker and orchestration tools like kubernetes can be used to further reduce the incompatibility between developers workstation and production env configuration.
+	
 > 3. Mention some of the core benefits of DevOps.
 	-There are certain flaws that the traditional software development lifecycle demonstrates. They are outlined as below..
 	i. Segregation of duties between the departments involved in development like development, QA, testing, security, performance etc.
@@ -47,6 +49,7 @@
 	vii. Improved users trust. Since business users know that software functionality is tested thoroughly, their confidence in the application quality rises. Thus, they lose the need to carry out their own manual acceptance tests afterwards, which reduces the overall lead time.
 
 > 4. What are the different phases in DevOps?
+
 	The various phases such as continuous development, continuous integration, continuous testing, continuous deployment, and continuous monitoring constitute DevOps Life cycle.
 	Continuous Development – 
 	This is the phase that involves ‘planning‘ and ‘coding‘ of the software. The vision of the project is decided during the planning phase and the developers begin developing the code for the application.
@@ -68,7 +71,9 @@
 	Continuous Monitoring –
 	This is a very crucial stage of the DevOps life cycle where you continuously monitor the performance of your application. Here vital information about the use of the software is recorded. This information is processed to recognize the proper functionality of the application. The system errors such as low memory, server not reachable, etc are resolved in this phase.
 	The root cause of any issue is determined in this phase. It maintains the security and availability of the services. Also if there are network issues, they are resolved in this phase. It helps us automatically fix the problem as soon as they are detected.
+	
 > 5. Explain the concept of branching in Git.
+
 	In any code repository , there is a master branch or the default branch where all the code gets checked in. If suppose you have few more resources who wants to work on the master or you have a new feature that need to be developed , then branching is the way to go. If every other resource starts to work on the master branch or you develop your new feature on the master branch, then if you need to deliver this master to production, then the under developed or untested code will also be deployed along with it. To overcome this, we can have branches, which can be used for all the other activities and once these activities are tested and confirmed, then can be merged to the master branch.
 
 6. What is a merge conflict in Git, and how can it be resolved?
