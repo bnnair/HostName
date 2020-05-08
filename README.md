@@ -15,6 +15,7 @@ Hostname identifier
                             --sdk-auth
 
     b. it creates a json file like this..
+    '''
             {
             "clientId": "351d4bc3-d955-42d4-ac14-d91f92572730",
             "clientSecret": "90e47ee0-63e2-44c3-9414-c7923020c451",
@@ -27,6 +28,8 @@ Hostname identifier
             "galleryEndpointUrl": "https://gallery.azure.com/",
             "managementEndpointUrl": "https://management.core.windows.net/"
             }
+      '''
+      
     c. create the following secrets in github->settings 
         i. name : AZURE_CREDENTIALS , paste the above json file and save
         ii. name: REGISTRY_USERNAME, value = bnnair
