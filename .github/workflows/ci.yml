@@ -7,18 +7,12 @@ name: CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
-  check_run:
-    types: [rerequested, requested_action]
 
 # Environment variables available to all jobs and steps in this workflow
 env:
   REGISTRY_NAME: bnnair
   CLUSTER_NAME: k8sdevopscluster
   CLUSTER_RESOURCE_GROUP: k8sdevops_rg
-  NAMESPACE: hostnamespace
-
 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -52,11 +46,7 @@ jobs:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
         cluster-name: ${{ env.CLUSTER_NAME }}
         resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
-
-    # Create namespace if doesn't exist
-    - run: |
-        kubectl create namespace ${{ env.NAMESPACE }} --dry-run -o json | kubectl apply -f -
-
+        
     # Create imagepullsecret for Azure Container registry (ACR)
     - uses: azure/k8s-create-secret@v1
       with:
@@ -64,7 +54,7 @@ jobs:
         container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
         container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
         secret-name: ${{ env.REGISTRY_NAME }}-registry-connection
-        namespace: ${{ env.NAMESPACE }}
+      
     
     # Deploy app to AKS
     - uses: azure/k8s-deploy@v1
@@ -76,4 +66,4 @@ jobs:
           ${{ env.REGISTRY_NAME }}.azurecr.io/k8sdevops:${{ github.sha }}
         imagepullsecrets: |
           ${{ env.REGISTRY_NAME }}-registry-connection
-        namespace: ${{ env.NAMESPACE }}
+        
