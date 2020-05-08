@@ -33,12 +33,12 @@ Hostname identifier
             }
       '''
       
-    c. create the following secrets in github->settings 
+    > c. create the following secrets in github->settings 
         i. name : AZURE_CREDENTIALS , paste the above json file and save
         ii. name: REGISTRY_USERNAME, value = bnnair
         iii. name: REGISTRY_PASSWORD, value " <password copied above>
 
-    d. Create A Kubernetes Service cluster named : k8sdevopscluster
-    e. run the ci.yml
-    f: get the external ip and port is 8080, open a browser and type: http://<externalIP>:8080
+    > d. Create A Kubernetes Service cluster named : k8sdevopscluster
+    > e. run the ci.yml
+    > f. get the external ip and port is 8080, open a browser and type: http://<externalIP>:8080
        This will give you the hostname of the system 
