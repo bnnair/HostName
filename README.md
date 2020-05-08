@@ -17,7 +17,6 @@ Hostname identifier
                             
     > b. it creates a json file like this..
     
-    '''
             {
             "clientId": "351d4bc3-d955-42d4-ac14-d91f92572730",
             "clientSecret": "90e47ee0-63e2-44c3-9414-c7923020c451",
@@ -30,14 +29,17 @@ Hostname identifier
             "galleryEndpointUrl": "https://gallery.azure.com/",
             "managementEndpointUrl": "https://management.core.windows.net/"
             }
-      '''
+
       
     > c. create the following secrets in github->settings 
+    
         i. name : AZURE_CREDENTIALS , paste the above json file and save
         ii. name: REGISTRY_USERNAME, value = bnnair
         iii. name: REGISTRY_PASSWORD, value " <password copied above>
 
     > d. Create A Kubernetes Service cluster named : k8sdevopscluster
+    
     > e. run the ci.yml
+    
     > f. get the external ip and port is 8080, open a browser and type: http://<externalIP>:8080
        This will give you the hostname of the system 
