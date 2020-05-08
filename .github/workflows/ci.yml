@@ -39,10 +39,12 @@ jobs:
         docker push ${{ env.REGISTRY_NAME }}.azurecr.io/k8sdevops:${{ github.sha }}
         #docker run -d -p 8080:8080 ${{ env.REGISTRY_NAME }}.azurecr.io/k8sdevops:${{ github.sha }}	
     
-    - uses: azure/k8s-set-context@v1
+    # Set the target Azure Kubernetes Service (AKS) cluster. 
+    - uses: azure/aks-set-context@v1
       with:
-         kubeconfig: ${{ secrets.aks_k8sdevops_kubeConfig }}
-      id: login
+        creds: '${{ secrets.AZURE_CREDENTIALS }}'
+        cluster-name: ${{ env.CLUSTER_NAME }}
+        resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
 
     - uses: azure/k8s-create-secret@v1
       with:
