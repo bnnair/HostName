@@ -1,7 +1,8 @@
 # Technical challenges for DevOps Engineer position
 
 > Please create a Git Repository for this challenge and commit all answers to it. Please keep this organised and commit with clear messages. Once complete, notify us and we will provide you with an email to add to the repository so we can review.
-> ## Basics
+## Basics
+
 General
 > 1. What is the role of AWS/Azure/GCP in DevOps?
 
@@ -31,6 +32,7 @@ General
 	i. Container systems like Docker and orchestration tools like kubernetes can be used to further reduce the incompatibility between developers workstation and production env configuration.
 	
 > 3. Mention some of the core benefits of DevOps.
+
 	-There are certain flaws that the traditional software development lifecycle demonstrates. They are outlined as below..
 	i. Segregation of duties between the departments involved in development like development, QA, testing, security, performance etc.
 	ii. Insufficient test coverage by tests
