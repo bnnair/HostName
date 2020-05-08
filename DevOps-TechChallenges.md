@@ -79,13 +79,14 @@ General
 	In any code repository , there is a master branch or the default branch where all the code gets checked in. If suppose you have few more resources who wants to work on the master or you have a new feature that need to be developed , then branching is the way to go. If every other resource starts to work on the master branch or you develop your new feature on the master branch, then if you need to deliver this master to production, then the under developed or untested code will also be deployed along with it. To overcome this, we can have branches, which can be used for all the other activities and once these activities are tested and confirmed, then can be merged to the master branch.
 
 6. What is a merge conflict in Git, and how can it be resolved?
+
 	A merge conflict arises when two separate branches have made edits to the same line in a file, or when a file has been deleted in one branch but edited in the other. Conflicts will most likely happen when working in a team environment.
 	The first thing that you should keep in mind is that you can always undo a merge and go back to the state before the conflict occurred. You're always able to undo and start fresh
 	Git makes merging extremely easy and in most cases, will figure out how to integrate new changes
 	Only in situations where changes are done in a single file or changed same line in the same file, then git would require some help with the merge decision.
 	When merge conflicts happen, it is better to work with the developer whom your code has a conflict with. Understand the exact scenario and then either do a simple undo of the merge and start afresh. Or you can have a comparison tool to visualize the conflict side by side and then do the merge manually. Once done, you can then do a regular commit.
 
-> Security
+Security
 > 1. What is DDoS attack? How do you deal with it?
 
     A basic denial of service (DoS) attack involves bombarding an IP address with large amounts of traffic. If the IP address points to a Web server, then it (or routers upstream of it) may be overwhelmed. Legitimate traffic heading for the Web server will be unable to contact it, and the site becomes unavailable. Service is denied.
@@ -97,11 +98,14 @@ General
     	If a DDoS attack is large enough, the first thing a hosting company or ISP is likely to do is "null route" your traffic – which results in packets destined for your Web server being dropped before they arrive.
     	d. Call a DDOS mitigation specialist:  For very large attacks, it's likely that the best chance of staying online is to use a specialist DDoS mitigation company. These organizations have large-scale infrastructure and use a variety of technologies, including data scrubbing, to help keep your website online. You may need to contact a DDoS mitigation company directly, or your hosting company or service provider may have a partnership agreement with one to handle large attacks.
 
-2. What are the benefits of having Policy management?
-3. How HTTPS is different from HTTP?
+> 2. What are the benefits of having Policy management?
+
+> 3. How HTTPS is different from HTTP?
+
 	HTTP is unsecured while HTTPS is secured. HTTP sends data over port 80 while HTTPS uses port 443.HTTP operates at application layer, while HTTPS operates at transport layer. No SSL certificates are required for HTTP, with HTTPS it is required that you have an SSL certificate and it is signed by a CA.
-4. What TCP and UDP vulnerabilities are you familiar with?
-5. Explain Oauth
+> 4. What TCP and UDP vulnerabilities are you familiar with?
+> 5. Explain Oauth
+
 	OAuth allows websites and services to share assets among users. It is widely accepted, but be aware of its vulnerabilities.
 	OAuth is an open-standard authorization protocol or framework that describes how unrelated servers and services can safely allow authenticated access to their assets without actually sharing the initial, related, single logon credential. 
 	The simplest example of OAuth is when you go to log onto a website and it offers one or more opportunities to log on using another website’s/service’s logon. You then click on the button linked to the other website, the other website authenticates you, and the website you were originally connecting to logs you on itself afterward using permission gained from the second website.
@@ -118,9 +122,9 @@ General
 	j. The second website lets the first website access their site on behalf of the user.
 	k. The user sees a successfully completed transaction occurring.
 
-6. What types of firewalls are there?
+> 6. What types of firewalls are there?
 
-> Technical challenge
+Technical challenge
 > **Please also produce a Design Document for this challenge**
 > 1. Write a simple program in any language you want that outputs "I'm on %HOSTNAME%" (HOSTNAME should be the actual host name on which the app is running) and deploy it to Github
 > 2. Write a Dockerfile which will run your app
